@@ -13,7 +13,7 @@
   },
   "main": "./lib/synchronize.js",
   "dependencies": {
-    "@types/node": "^7.0.27"
+    "@types/node": "^8.0.1"
   },
   "scripts": {
     "test": "./node_modules/typescript/bin/tsc && ./node_modules/mocha/bin/mocha",
@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "@types/mocha": "^2.2.41",
-    "@types/node": "^7.0.27",
+    "@types/node": "^8.0.1",
     "mocha": "^3.4.2",
     "mochaccino": "^1.2.0",
     "typescript": "^2.3.4"
