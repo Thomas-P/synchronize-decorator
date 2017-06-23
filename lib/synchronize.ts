@@ -2,7 +2,7 @@ import {LockQueue} from "./queue";
 
 
 const STANDARD_TOKEN = Math.random().toString(16);
-const queueMap = new WeakMap<Symbol, LockQueue>();
+const queueMap = new Map<Symbol, LockQueue>();
 /**
  * generate or get a LockQueue from an token
  * @param token
