@@ -22,7 +22,7 @@
   "devDependencies": {
     "@types/mocha": "^2.2.41",
     "@types/node": "^8.0.1",
-    "mocha": "^3.4.2",
+    "mocha": "^4.0.1",
     "mochaccino": "^1.2.0",
     "typescript": "^2.3.4"
   }
