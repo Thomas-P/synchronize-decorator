@@ -8,8 +8,9 @@ describe('Synchronize', () => {
             @Synchronize()
             async method(position: number) {
                 positions.push(position);
+                // 'Should be the instance of Test'
                 expect(this instanceof Test)
-                    .toBe(true, 'Should be the instance of Test');
+                    .toBe(true);
             }
         }
 
@@ -17,13 +18,17 @@ describe('Synchronize', () => {
         for (let i = 0;i<10;i++) {
             test.method(i);
         }
+        // 'No method should be called at this time,
+        // because lock is request before and must wait for the next iteration of event loop.'
         expect(positions.length)
-            .toBe(0, 'No method should be called at this time, because lock is request before and must wait for the next iteration of event loop.');
+            .toBe(0);
         await test.method(10);
+        // 'All 11 events are called.'
         expect(positions.length)
-            .toBe(11, 'All 11 events are called.');
+            .toBe(11);
+        // 'Every call is handled in the right order.'
         expect(positions.every((value, index) => value === index))
-            .toBe(true, 'Every call is handled in the right order.');
+            .toBe(true);
 
     });
 });

@@ -1,6 +1,6 @@
 {
-  "name": "decorator-synchronize",
-  "version": "0.0.1",
+  "name": "synchronize-decorator",
+  "version": "0.0.2",
   "description": "A synchronize decorator, which allows to call a method once a time",
   "author": "Thomas-P",
   "license": "MIT",
@@ -12,18 +12,17 @@
     "url": "git+https://github.com/Thomas-P/synchronize"
   },
   "main": "./lib/synchronize.js",
-  "dependencies": {
-    "@types/node": "^8.0.51"
-  },
+  "types": "./lib/synchronize.ts",
+  "dependencies": {},
   "scripts": {
-    "test": "./node_modules/typescript/bin/tsc && ./node_modules/mocha/bin/mocha",
-    "install": "./node_modules/typescript/bin/tsc"
+    "test": "tsc && mocha"
   },
   "devDependencies": {
-    "@types/mocha": "^2.2.41",
-    "@types/node": "^8.0.1",
+    "@types/mocha": "^2.2.44",
+    "@types/mochaccino": "^1.2.0",
+    "@types/node": "^8.0.51",
     "mocha": "^4.0.1",
     "mochaccino": "^1.2.0",
-    "typescript": "^2.3.4"
+    "typescript": "^2.6.1"
   }
 }
