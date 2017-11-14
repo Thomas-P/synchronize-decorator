@@ -1,6 +1,6 @@
 {
   "name": "synchronize-decorator",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "A synchronize decorator, which allows to call a method once a time",
   "keywords": ["typescript", "decorator", "sync", "synchronous", "node", "javascript", "class", "async", "await"],
   "author": "Thomas-P",
