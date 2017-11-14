@@ -5,7 +5,7 @@ Synchronize is a little module, that allows you to run an async method once a ti
 
 ## usage
 ```typescript
-    import {Synchronize} from 'decorator-synchronize';
+    import {Synchronize} from 'synchronize-decorator';
 
     class TestClass {
         /**
