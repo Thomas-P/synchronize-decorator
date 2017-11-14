@@ -78,7 +78,7 @@ export const Synchronize = (token: string | symbol = STANDARD_TOKEN) => {
  * The synchronize method replace a function with an function
  * @param token
  * @param func
- * @returns {(...args:any[])=>Promise<T>}
+ * @returns void
  * @constructor
  */
 export const SynchronizeMethod = (token: string | symbol = STANDARD_TOKEN, func: Function) => {

@@ -4,15 +4,18 @@ import {LockQueue} from "../lib/queue";
 
 describe('LockQueue', () => {
     it ('should have the right interface', () => {
+        //  LockQueue is a function constructor.
         expect(typeof LockQueue)
-            .toBe('function', ' LockQueue is a function constructor.');
+            .toBe('function');
 
+        // queue is an instance of LockQueue.
         const queue = new LockQueue();
         expect(queue instanceof LockQueue)
-            .toBe(true, 'queue is an instance of LockQueue.');
+            .toBe(true);
 
+        // LockQueue has a function named addToQueue
         expect(typeof queue.addToQueue)
-            .toBe('function', 'LockQueue has a function named addToQueue');
+            .toBe('function');
     });
 
     it('adding Promises to the Queue lock them', async () => {
@@ -45,16 +48,19 @@ describe('LockQueue', () => {
         for (let i = 0; i < CREATE_NUM_PROMISES; i++) {
             createLockMethod();
         }
+        // Every value in the is Called chain must be false.
         expect(isCalled.every((value) => value === false))
-            .toBe(true, 'Every value in the is Called chain must be false.');
+            .toBe(true);
+        // Length of called chain must be ${CREATE_NUM_PROMISES}
         expect(isCalled.length)
-            .toBe(CREATE_NUM_PROMISES, `Length of called chain must be ${CREATE_NUM_PROMISES}`);
+            .toBe(CREATE_NUM_PROMISES);
 
+        // `Length of resolver chain must be ${CREATE_NUM_PROMISES}`
         expect(resolver.length)
-            .toBe(CREATE_NUM_PROMISES, `Length of resolver chain must be ${CREATE_NUM_PROMISES}`);
-
+            .toBe(CREATE_NUM_PROMISES);
+        // `Every value of the resolver chain is a function.`
         expect(resolver.every((value) => typeof value === 'function'))
-            .toBe(true, `Every value of the resolver chain is a function.`);
+            .toBe(true);
 
         for (let i = CREATE_NUM_PROMISES; i>1; i--) {
             await new Promise(resolve => {
@@ -65,19 +71,23 @@ describe('LockQueue', () => {
             });
         }
         // first is called
+        // 'First value is called every other in the chain is not.'
         expect(isCalled.every((value, index) => value === (index===0)))
-            .toBe(true, 'First value is called every other in the chain is not.');
+            .toBe(true);
         await new Promise(resolve => {
             // first event finished
             resolver[0]();
             // call the resolver at this position
             setTimeout(resolve, 0)
         });
+
         await queue.addToQueue(() => {
+            // 'Every value in the is called chain must be false, even if the resolver is called'
             expect(isCalled.every((value, index) => value === true))
-                .toBe(true, 'Every value in the is called chain must be false, even if the resolver is called');
+                .toBe(true);
+            // 'Every method is called in the right order.'
             expect(inOrder.every((value, index) => value === index))
-                .toBe(true, 'Every method is called in the right order.')
+                .toBe(true)
         });
     })
 });
