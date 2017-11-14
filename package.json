@@ -5,11 +5,11 @@
   "author": "Thomas-P",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Thomas-P/issues"
+    "url": "https://github.com/Thomas-P/decorator-synchronize/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Thomas-P/synchronize"
+    "url": "git+https://github.com/Thomas-P/decorator-synchronize"
   },
   "main": "./lib/synchronize.js",
   "types": "./lib/synchronize.ts",
