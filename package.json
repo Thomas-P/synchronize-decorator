@@ -13,7 +13,7 @@
   },
   "main": "./lib/synchronize.js",
   "dependencies": {
-    "@types/node": "^8.0.1"
+    "@types/node": "^8.0.51"
   },
   "scripts": {
     "test": "./node_modules/typescript/bin/tsc && ./node_modules/mocha/bin/mocha",
