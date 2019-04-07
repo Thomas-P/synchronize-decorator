@@ -22,7 +22,7 @@
     "@types/mocha": "^2.2.44",
     "@types/mochaccino": "^1.2.0",
     "@types/node": "^8.0.51",
-    "mocha": "^4.0.1",
+    "mocha": "^6.1.0",
     "mochaccino": "^1.2.0",
     "typescript": "^2.6.1"
   }
