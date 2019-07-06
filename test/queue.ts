@@ -1,21 +1,18 @@
-import {expect} from "mochaccino";
-import {LockQueue} from "../lib/queue";
+import {equal} from 'assert';
+import {LockQueue} from '../lib/queue';
 
 
 describe('LockQueue', () => {
     it ('should have the right interface', () => {
         //  LockQueue is a function constructor.
-        expect(typeof LockQueue)
-            .toBe('function');
+        equal(typeof LockQueue, 'function');
 
         // queue is an instance of LockQueue.
         const queue = new LockQueue();
-        expect(queue instanceof LockQueue)
-            .toBe(true);
+        equal(queue instanceof LockQueue, true);
 
         // LockQueue has a function named addToQueue
-        expect(typeof queue.addToQueue)
-            .toBe('function');
+        equal(typeof queue.addToQueue, 'function');
     });
 
     it('adding Promises to the Queue lock them', async () => {
@@ -49,18 +46,14 @@ describe('LockQueue', () => {
             createLockMethod();
         }
         // Every value in the is Called chain must be false.
-        expect(isCalled.every((value) => value === false))
-            .toBe(true);
+        equal(isCalled.every((value) => value === false), true);
         // Length of called chain must be ${CREATE_NUM_PROMISES}
-        expect(isCalled.length)
-            .toBe(CREATE_NUM_PROMISES);
+        equal(isCalled.length, CREATE_NUM_PROMISES);
 
         // `Length of resolver chain must be ${CREATE_NUM_PROMISES}`
-        expect(resolver.length)
-            .toBe(CREATE_NUM_PROMISES);
+        equal(resolver.length, CREATE_NUM_PROMISES);
         // `Every value of the resolver chain is a function.`
-        expect(resolver.every((value) => typeof value === 'function'))
-            .toBe(true);
+        equal(resolver.every((value) => typeof value === 'function'), true);
 
         for (let i = CREATE_NUM_PROMISES; i>1; i--) {
             await new Promise(resolve => {
@@ -72,8 +65,7 @@ describe('LockQueue', () => {
         }
         // first is called
         // 'First value is called every other in the chain is not.'
-        expect(isCalled.every((value, index) => value === (index===0)))
-            .toBe(true);
+        equal(isCalled.every((value, index) => value === (index===0)),true);
         await new Promise(resolve => {
             // first event finished
             resolver[0]();
@@ -83,11 +75,9 @@ describe('LockQueue', () => {
 
         await queue.addToQueue(() => {
             // 'Every value in the is called chain must be false, even if the resolver is called'
-            expect(isCalled.every((value, index) => value === true))
-                .toBe(true);
+            equal(isCalled.every((value, index) => value === true), true);
             // 'Every method is called in the right order.'
-            expect(inOrder.every((value, index) => value === index))
-                .toBe(true)
+            equal(inOrder.every((value, index) => value === index), true)
         });
     })
 });
