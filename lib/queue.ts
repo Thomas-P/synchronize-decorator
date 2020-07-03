@@ -51,11 +51,13 @@ export class LockQueue {
      */
     public async addToQueue<T>(method: Function, context?: any, args?: any[]): Promise<T> {
         await this.requestLock();
-        const result: T = await method.apply(context, args);
-        //
-        // lock will removed in the next event loop call
-        //
-        setTimeout(() => this.removeLock(), 0);
-        return result;
+        try {
+            return await method.apply(context, args);
+        } finally {
+            //
+            // lock will removed in the next event loop call
+            //
+            setTimeout(() => this.removeLock(), 0);
+        }
     }
 }
