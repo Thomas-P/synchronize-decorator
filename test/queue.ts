@@ -1,6 +1,10 @@
+import * as chai from 'chai';
+import * as chaiAsPromised from 'chai-as-promised';
 import {equal} from 'assert';
 import {LockQueue} from '../lib/queue';
+const {expect} = chai;
 
+chai.use(chaiAsPromised);
 
 describe('LockQueue', () => {
     it ('should have the right interface', () => {
@@ -79,5 +83,25 @@ describe('LockQueue', () => {
             // 'Every method is called in the right order.'
             equal(inOrder.every((value, index) => value === index), true)
         });
+    })
+
+    const errorProducer = () => { throw new Error('Method failed') };
+    const valueProducer = () => 'VALUE';
+
+    it('rejected Promises must throw their error', async () => {
+        const queue = new LockQueue();
+        const promise = queue.addToQueue(errorProducer, null, []);
+
+        expect(promise).to.be.rejectedWith(Error);
+    });
+
+    it('rejecting Promises still unlocks them', async () => {
+        const queue = new LockQueue();
+        await queue.addToQueue(errorProducer, null, [])
+            .catch(() => { /* ignoring exception */ });
+
+        const actual = await queue.addToQueue(valueProducer, null, []);
+
+        equal(actual, valueProducer());
     })
 });
