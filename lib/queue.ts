@@ -18,7 +18,7 @@ export class LockQueue {
      *  the request before is finished.
      * @returns {Promise<T>}
      */
-    private requestLock<T>(): Promise<T> {
+    private requestLock(): Promise<void> {
         return new Promise((resolve) => {
             if (this.lock) {
                 this.queue.push(resolve);
