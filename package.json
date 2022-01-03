@@ -1,6 +1,6 @@
 {
   "name": "@mocko/sync",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A synchronize decorator, which allows to call a method once a time",
   "keywords": [
     "typescript",
